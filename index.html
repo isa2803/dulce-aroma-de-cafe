@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dulce Aroma de Café - El arte del café hecho dulce</title>
+  <!-- Fuente elegante -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      background: url("fondo.jpg!w700wp") no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: -1;
+    }
+
+    #particles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(0,0,0,0.5);
+    }
+
+    header h1 {
+      font-size: 4rem;
+      font-family: 'Great Vibes', cursive;
+      margin: 0;
+      background: linear-gradient(45deg, #b8860b, #ffd700, #fff8dc, #daa520, #ffd700);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 5s infinite linear;
+    }
+
+    @keyframes shine {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header .eslogan {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      font-style: italic;
+      color: #fff8dc;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      color: #d4af37;
+      margin-bottom: 20px;
+      font-family: 'Great Vibes', cursive;
+    }
+
+    section p {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+
+    .productos {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .producto {
+      background: rgba(255,255,255,0.1);
+      border: 2px solid #d4af37;
+      border-radius: 15px;
+      width: 250px;
+      text-align: center;
+      padding: 20px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    .producto:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+    }
+
+    .producto img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .precio {
+      background: #d4af37;
+      color: #000;
+      font-weight: bold;
+      padding: 5px 12px;
+      border-radius: 15px;
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 1.1rem;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: #fff;
+      color: #000;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+      animation: zoomIn 0.5s;
+    }
+
+    @keyframes zoomIn {
+      from {transform: scale(0.5); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .btn-whatsapp {
+      display: inline-block;
+      margin-top: 15px;
+      background: #25D366;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .btn-whatsapp:hover {
+      background: #1ebc59;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      margin-top: 50px;
+    }
+
+    footer p {
+      margin: 5px 0;
+      color: #d4af37;
+    }
+
+    .social a {
+      font-size: 1.2rem;
+      margin: 0 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: transform 0.3s;
+      background: linear-gradient(45deg, #b8860b, #ffd700, #fff8dc, #daa520, #ffd700);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 5s infinite linear;
+    }
+
+    .social a:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <header>
+    <h1>Dulce Aroma de Café</h1>
+    <p class="eslogan">Naturalmente dulce, auténticamente café.</p>
+    <nav>
+      <a href="#productos">Productos</a>
+      <a href="#historia">Nuestra Historia</a>
+      <a href="#contacto">Contáctanos</a>
+    </nav>
+  </header>
+
+  <section id="productos">
+    <h2>Nuestros Productos</h2>
+    <div class="productos">
+      <div class="producto" onclick="abrirModal('modal1')">
+        <img src="https://picsum.photos/250/200?random=1" alt="Tarro intensidad media">
+        <h3>Tarro de Vidrio 200g</h3>
+        <p>Intensidad Media</p>
+        <span class="precio">$20.000</span>
+      </div>
+      <div class="producto" onclick="abrirModal('modal2')">
+        <img src="https://picsum.photos/250/200?random=2" alt="Tarro intensidad alta">
+        <h3>Tarro de Vidrio 200g</h3>
+        <p>Intensidad Alta</p>
+        <span class="precio">$23.000</span>
+      </div>
+      <div class="producto" onclick="abrirModal('modal3')">
+        <img src="https://picsum.photos/250/200?random=3" alt="Barquillos rellenos">
+        <h3>Barquillos Rellenos</h3>
+        <p>Arequipe de Café</p>
+        <span class="precio">$2.000</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="historia">
+    <h2>Nuestra Historia</h2>
+    <p>Dulce Aroma de Café nació de la pasión por el café colombiano y la tradición del arequipe artesanal. Cada una de nuestras recetas está elaborada con amor y dedicación, buscando que cada persona disfrute una experiencia única: la dulzura del café transformada en crema.
+    Somos estudiantes del colegio Paulo Freire, pertenecientes al técnico de ciencias empresariales, y desde allí nació la motivación por emprender un camino que une tradición, innovación y sabor.
+    Nuestro emprendimiento, Dulce Aroma de Café, desarrolla un producto único y especial: un arequipe a base de café, una deliciosa fusión entre la suavidad del arequipe tradicional y el inconfundible sabor del café colombiano.</p>
+  </section>
+
+  <section id="contacto">
+    <h2>Contáctanos</h2>
+    <p>Haz tus pedidos o resuelve tus dudas directamente por WhatsApp.</p>
+    <a class="precio" href="https://wa.me/573001234567?text=Hola%20quiero%20hacer%20un%20pedido%20de%20Dulce%20Aroma%20de%20Café" target="_blank">Escríbenos</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Dulce Aroma de Café. Todos los derechos reservados.</p>
+    <p>Hecho con amor en Colombia.</p>
+    <div class="social">
+      <a href="https://www.instagram.com/dulce_aroma_de_cafe_?igsh=MWFnZTkzNnF5djdlYQ==" target="_blank">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
+      <a href="https://wa.me/573001234567?text=Hola%20quiero%20hacer%20un%20pedido%20de%20Dulce%20Aroma%20de%20Café" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+  </footer>
+
+  <!-- Modales -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal('modal1')">&times;</span>
+      <h2>Tarro de Vidrio 200g - Intensidad Media</h2>
+      <p>Un delicioso arequipe de café suave, con equilibrio perfecto entre dulzura y aroma.</p>
+      <p class="precio">$20.000</p>
+      <a href="https://wa.me/573001234567?text=Hola%20quiero%20el%20Tarro%20de%20Vidrio%20200g%20Intensidad%20Media%20de%20Dulce%20Aroma%20de%20Café" target="_blank" class="btn-whatsapp">Pedir por WhatsApp</a>
+    </div>
+  </div>
+
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal('modal2')">&times;</span>
+      <h2>Tarro de Vidrio 200g - Intensidad Alta</h2>
+      <p>Para los amantes del café intenso, un sabor fuerte y envolvente.</p>
+      <p class="precio">$23.000</p>
+      <a href="https://wa.me/573001234567?text=Hola%20quiero%20el%20Tarro%20de%20Vidrio%20200g%20Intensidad%20Alta%20de%20Dulce%20Aroma%20de%20Café" target="_blank" class="btn-whatsapp">Pedir por WhatsApp</a>
+    </div>
+  </div>
+
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal('modal3')">&times;</span>
+      <h2>Barquillos Rellenos de Arequipe de Café</h2>
+      <p>La mezcla perfecta entre crocante y cremoso, ideal para compartir.</p>
+      <p class="precio">$2.000</p>
+      <a href="https://wa.me/573001234567?text=Hola%20quiero%20los%20Barquillos%20Rellenos%20de%20Arequipe%20de%20Café%20de%20Dulce%20Aroma%20de%20Café" target="_blank" class="btn-whatsapp">Pedir por WhatsApp</a>
+    </div>
+  </div>
+
+  <script>
+    function abrirModal(id) {
+      document.getElementById(id).style.display = "flex";
+    }
+    function cerrarModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let granos = [];
+
+    class Grano {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 6 + 4;
+        this.speedY = Math.random() * 1 + 0.3;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.color = "#4b2e2e";
+        this.bril = Math.random() < 0.2;
+      }
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        if (this.y > canvas.height) {
+          this.y = -10;
+          this.x = Math.random() * canvas.width;
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.ellipse(this.x, this.y, this.size, this.size/1.5, Math.PI/4, 0, Math.PI*2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        if (this.bril) {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size/3, 0, Math.PI*2);
+          ctx.fillStyle = "rgba(212,175,55,0.6)";
+          ctx.fill();
+        }
+      }
+    }
+
+    function initGranos() {
+      granos = [];
+      for (let i = 0; i < 50; i++) {
+        granos.push(new Grano());
+      }
+    }
+
+    function animar() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      granos.forEach(grano => {
+        grano.update();
+        grano.draw();
+      });
+      requestAnimationFrame(animar);
+    }
+
+    initGranos();
+    animar();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initGranos();
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
